@@ -5,6 +5,9 @@ import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatCardModule} from "@angular/material/card";
+import {MatDividerModule} from "@angular/material/divider";
 
 
 @NgModule({
@@ -16,7 +19,10 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     MatSortModule,
     MatPaginatorModule,
     MatSidenavModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTabsModule,
+    MatCardModule,
+    MatDividerModule,
   ],
   exports: [
     CommonModule,
@@ -25,7 +31,10 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     MatSortModule,
     MatPaginatorModule,
     MatSidenavModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTabsModule,
+    MatCardModule,
+    MatDividerModule,
   ]
 })
 export class SharedModule {

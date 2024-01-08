@@ -13,6 +13,7 @@ import {TagModule} from "./tag/tag.module";
 import {HttpClientModule} from "@angular/common/http";
 import {UserModule} from "./user/user.module";
 import {SharedModule} from "./shared/shared.module";
+import {TaskModule} from "./task/task.module";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {SharedModule} from "./shared/shared.module";
     StoreDevtoolsModule.instrument({maxAge: 25}),
     TagModule,
     UserModule,
+    TaskModule,
     SharedModule
   ],
   providers: [],
