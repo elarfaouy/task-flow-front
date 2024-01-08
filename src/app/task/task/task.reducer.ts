@@ -29,6 +29,7 @@ export const reducer = createReducer(
   on(TaskActions.saveTask, state => state),
   on(TaskActions.saveTaskSuccess, (state, action) => ({
     ...state,
+    error: null,
     tasks: [...state.tasks, action.data]
   })),
   on(TaskActions.saveTaskFailure, (state, action) => ({
