@@ -11,6 +11,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
 import {TagModule} from "./tag/tag.module";
 import {HttpClientModule} from "@angular/common/http";
+import {UserModule} from "./user/user.module";
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -25,8 +27,8 @@ import {HttpClientModule} from "@angular/common/http";
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({maxAge: 25}),
     TagModule,
-    MatSidenavModule,
-    MatButtonModule
+    UserModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
