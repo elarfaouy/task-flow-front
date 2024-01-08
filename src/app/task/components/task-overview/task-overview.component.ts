@@ -9,6 +9,8 @@ import {
   selectTasksTodoList
 } from "../../task/task.selectors";
 import {TaskActions} from "../../task/task.actions";
+import {MatBottomSheet} from "@angular/material/bottom-sheet";
+import {TaskAddBottomSheetComponent} from "../task-add-bottom-sheet/task-add-bottom-sheet.component";
 
 @Component({
   selector: 'app-task-overview',
@@ -21,10 +23,15 @@ export class TaskOverviewComponent implements OnInit {
   tasksDoing$: Observable<TaskInterface[]> = this.store.pipe(select(selectTasksDoingList));
   tasksDone$: Observable<TaskInterface[]> = this.store.pipe(select(selectTasksDoneList));
 
-  constructor(private store: Store) {
+  constructor(private store: Store,
+              private _bottomSheet: MatBottomSheet) {
   }
 
   ngOnInit(): void {
     this.store.dispatch(TaskActions.loadTasks());
+  }
+
+  openAddTaskBottomSheet(): void {
+    this._bottomSheet.open(TaskAddBottomSheetComponent);
   }
 }

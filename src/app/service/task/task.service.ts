@@ -3,6 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {TaskInterface} from "../../model/task.interface";
 
+const params = {authUserId: 1};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,22 +23,22 @@ export class TaskService {
   }
 
   storeTask(task: TaskInterface): Observable<TaskInterface> {
-    return this.http.post<TaskInterface>(this.url, task);
+    return this.http.post<TaskInterface>(this.url, task, {params});
   }
 
   updateTask(task: TaskInterface): Observable<TaskInterface> {
-    return this.http.put<TaskInterface>(this.url + `/${task.id}`, task);
+    return this.http.put<TaskInterface>(this.url + `/${task.id}`, task, {params});
   }
 
   updateTaskStatus(task: TaskInterface): Observable<TaskInterface> {
-    return this.http.put<TaskInterface>(this.url + `/${task.id}/status`, task);
+    return this.http.put<TaskInterface>(this.url + `/${task.id}/status`, task, {params});
   }
 
   updateTaskAssign(task: TaskInterface): Observable<TaskInterface> {
-    return this.http.put<TaskInterface>(this.url + `/${task.id}/assign`, task);
+    return this.http.put<TaskInterface>(this.url + `/${task.id}/assign`, task, {params});
   }
 
   deleteTask(id: number): Observable<TaskInterface> {
-    return this.http.delete<TaskInterface>(this.url + `/${id}`);
+    return this.http.delete<TaskInterface>(this.url + `/${id}`, {params});
   }
 }

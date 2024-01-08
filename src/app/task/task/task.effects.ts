@@ -15,7 +15,18 @@ export class TaskEffects {
       concatMap(() =>
         this.taskService.getAllTasks().pipe(
           map(data => TaskActions.loadTasksSuccess({data})),
-          catchError(error => of(TaskActions.loadTasksFailure({error}))))
+          catchError(error => of(TaskActions.loadTasksFailure({error: error.error}))))
+      )
+    );
+  });
+
+  saveTask$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskActions.saveTask),
+      concatMap((action) =>
+        this.taskService.storeTask(action.data).pipe(
+          map(data => TaskActions.saveTaskSuccess({data})),
+          catchError(error => of(TaskActions.saveTaskFailure({error: error.error}))))
       )
     );
   });
