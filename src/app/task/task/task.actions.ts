@@ -11,5 +11,11 @@ export const TaskActions = createActionGroup({
     'Save Task': props<{ data: TaskInterface }>(),
     'Save Task Success': props<{ data: TaskInterface }>(),
     'Save Task Failure': props<{ error: ApiResponse }>(),
+    'Delete Task': props<{ data: TaskInterface }>(),
+    'Delete Task Success': props<{ data: TaskInterface }>(),
+    'Delete Task Failure': props<{ error: ApiResponse }>(),
+    'Update Assign Task': props<{ data: TaskInterface }>(),
+    'Update Assign Task Success': props<{ data: TaskInterface }>(),
+    'Update Assign Task Failure': props<{ error: ApiResponse }>()
   }
 });

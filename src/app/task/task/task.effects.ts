@@ -31,6 +31,28 @@ export class TaskEffects {
     );
   });
 
+  deleteTask$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskActions.deleteTask),
+      concatMap((action) =>
+        this.taskService.deleteTask(action.data.id).pipe(
+          map(data => TaskActions.deleteTaskSuccess({data})),
+          catchError(error => of(TaskActions.deleteTaskFailure({error: error.error}))))
+      )
+    );
+  });
+
+  updateAssignTask$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskActions.updateAssignTask),
+      concatMap((action) =>
+        this.taskService.updateTaskAssign(action.data).pipe(
+          map(data => TaskActions.updateAssignTaskSuccess({data})),
+          catchError(error => of(TaskActions.updateAssignTaskFailure({error: error.error}))))
+      )
+    );
+  });
+
   constructor(private actions$: Actions, private taskService: TaskService) {
   }
 }
