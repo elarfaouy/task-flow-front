@@ -1,0 +1,16 @@
+<form id="form" [formGroup]="updateStatusForm" (ngSubmit)="updateTaskStatus()">
+  <mat-form-field>
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status">
+      <mat-option *ngFor="let status of statusList" [value]="status">{{ status }}</mat-option>
+    </mat-select>
+    <div *ngIf="(errorResponse$ | async)?.errors?.['status']">
+      <mat-error>{{ (errorResponse$ | async)?.errors?.['status'] }}</mat-error>
+    </div>
+  </mat-form-field>
+
+  <div *ngIf="(errorResponse$ | async)?.message">
+    <mat-error>{{ (errorResponse$ | async)?.message }}</mat-error>
+  </div>
+  <button type="submit" mat-raised-button color="primary">submit</button>
+</form>
