@@ -1,0 +1,20 @@
+<div class="table-title">
+  <h3>
+    <strong> Tasks </strong>
+  </h3>
+  <div>
+    <button mat-raised-button color="primary" (click)="openAddTaskBottomSheet()">Add Task</button>
+  </div>
+</div>
+
+<mat-tab-group>
+  <mat-tab label="ToDo">
+    <app-task *ngFor="let task of tasksTodo$ | async" [id]="task.id"/>
+  </mat-tab>
+  <mat-tab label="Doing">
+    <app-task *ngFor="let task of tasksDoing$ | async" [id]="task.id"/>
+  </mat-tab>
+  <mat-tab label="Done">
+    <app-task *ngFor="let task of tasksDone$ | async" [id]="task.id"/>
+  </mat-tab>
+</mat-tab-group>

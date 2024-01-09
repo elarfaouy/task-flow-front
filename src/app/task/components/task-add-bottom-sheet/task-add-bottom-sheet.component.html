@@ -1,0 +1,64 @@
+<form id="form" [formGroup]="addForm" (ngSubmit)="saveTask()">
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input type="text" matInput formControlName="title">
+    <div *ngIf="(errorResponse$ | async)?.errors?.['title']">
+      <mat-error>{{ (errorResponse$ | async)?.errors?.['title'] }}</mat-error>
+    </div>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input matInput formControlName="description">
+    <div *ngIf="(errorResponse$ | async)?.errors?.['description']">
+      <mat-error>{{ (errorResponse$ | async)?.errors?.['description'] }}</mat-error>
+    </div>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Priority</mat-label>
+    <mat-select formControlName="priority">
+      <mat-option selected value="HIGH">HIGH</mat-option>
+      <mat-option value="MEDIUM">MEDIUM</mat-option>
+      <mat-option value="LOW">LOW</mat-option>
+    </mat-select>
+    <div *ngIf="(errorResponse$ | async)?.errors?.['priority']">
+      <mat-error>{{ (errorResponse$ | async)?.errors?.['priority'] }}</mat-error>
+    </div>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Assign Date</mat-label>
+    <input type="date" matInput formControlName="assignDate">
+    <div *ngIf="(errorResponse$ | async)?.errors?.['assignDate']">
+      <mat-error>{{ (errorResponse$ | async)?.errors?.['assignDate'] }}</mat-error>
+    </div>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Due Date</mat-label>
+    <input type="date" matInput formControlName="dueDate">
+    <div *ngIf="(errorResponse$ | async)?.errors?.['dueDate']">
+      <mat-error>{{ (errorResponse$ | async)?.errors?.['dueDate'] }}</mat-error>
+    </div>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Assign To</mat-label>
+    <mat-select formControlName="assignTo">
+      <mat-option *ngFor="let user of users$ | async" [value]="user">{{ user.username }}</mat-option>
+    </mat-select>
+    <div *ngIf="(errorResponse$ | async)?.errors?.['assignTo']">
+      <mat-error>{{ (errorResponse$ | async)?.errors?.['assignTo'] }}</mat-error>
+    </div>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Tags</mat-label>
+    <mat-select formControlName="tags" multiple>
+      <mat-option *ngFor="let tag of tags$ | async" [value]="tag">{{ tag.name }}</mat-option>
+    </mat-select>
+    <div *ngIf="(errorResponse$ | async)?.errors?.['tags']">
+      <mat-error>{{ (errorResponse$ | async)?.errors?.['tags'] }}</mat-error>
+    </div>
+  </mat-form-field>
+
+  <div *ngIf="(errorResponse$ | async)?.message">
+    <mat-error>{{ (errorResponse$ | async)?.message }}</mat-error>
+  </div>
+  <button type="submit" mat-raised-button color="primary">submit</button>
+</form>
