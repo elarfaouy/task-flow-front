@@ -69,6 +69,29 @@ export const reducer = createReducer(
     ...state,
     error: action.error
   })),
+  on(TaskActions.updateStatusTask, state => state),
+  on(TaskActions.updateStatusTaskSuccess, (state, action) => {
+    const updatedTask = action.data;
+
+    const taskIndex = state.tasks.findIndex(task => task.id === updatedTask.id);
+
+    if (taskIndex !== -1) {
+      const updatedTasks = [...state.tasks];
+      updatedTasks[taskIndex] = updatedTask;
+
+      return {
+        ...state,
+        error: null,
+        tasks: updatedTasks,
+      };
+    } else {
+      return state;
+    }
+  }),
+  on(TaskActions.updateAssignTaskFailure, (state, action) => ({
+    ...state,
+    error: action.error
+  })),
 );
 
 export const taskFeature = createFeature({

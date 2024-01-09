@@ -6,6 +6,8 @@ import {selectTaskById, selectTasksError} from "../../task/task.selectors";
 import {TaskActions} from "../../task/task.actions";
 import {ApiResponse} from "../../../model/api-response";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatBottomSheet} from "@angular/material/bottom-sheet";
+import {TaskUpdateBottomSheetComponent} from "../task-update-bottom-sheet/task-update-bottom-sheet.component";
 
 @Component({
   selector: 'app-task',
@@ -18,7 +20,8 @@ export class TaskComponent implements OnChanges {
   errorResponse$: Observable<ApiResponse | null> = this.store.pipe(select(selectTasksError));
 
   constructor(private store: Store,
-              private _snackBar: MatSnackBar) {
+              private _snackBar: MatSnackBar,
+              private _bottomSheet: MatBottomSheet) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -65,5 +68,15 @@ export class TaskComponent implements OnChanges {
         }
       }
     );
+  }
+
+  openUpdateTaskBottomSheet(): void {
+    this.task$.pipe(first()).subscribe(task => {
+      if (task) {
+        this._bottomSheet.open(TaskUpdateBottomSheetComponent, {
+          data: {task: task}
+        });
+      }
+    });
   }
 }

@@ -53,6 +53,17 @@ export class TaskEffects {
     );
   });
 
+  updateStatusTask$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskActions.updateStatusTask),
+      concatMap((action) =>
+        this.taskService.updateTaskStatus(action.data).pipe(
+          map(data => TaskActions.updateStatusTaskSuccess({data})),
+          catchError(error => of(TaskActions.updateStatusTaskFailure({error: error.error}))))
+      )
+    );
+  });
+
   constructor(private actions$: Actions, private taskService: TaskService) {
   }
 }

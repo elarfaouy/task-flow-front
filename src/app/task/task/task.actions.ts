@@ -16,6 +16,9 @@ export const TaskActions = createActionGroup({
     'Delete Task Failure': props<{ error: ApiResponse }>(),
     'Update Assign Task': props<{ data: TaskInterface }>(),
     'Update Assign Task Success': props<{ data: TaskInterface }>(),
-    'Update Assign Task Failure': props<{ error: ApiResponse }>()
+    'Update Assign Task Failure': props<{ error: ApiResponse }>(),
+    'Update Status Task': props<{ data: TaskInterface }>(),
+    'Update Status Task Success': props<{ data: TaskInterface }>(),
+    'Update Status Task Failure': props<{ error: ApiResponse }>(),
   }
 });

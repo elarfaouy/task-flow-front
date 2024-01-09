@@ -13,13 +13,15 @@ import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
 import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
+import { TaskUpdateBottomSheetComponent } from './components/task-update-bottom-sheet/task-update-bottom-sheet.component';
 
 
 @NgModule({
   declarations: [
     TaskComponent,
     TaskOverviewComponent,
-    TaskAddBottomSheetComponent
+    TaskAddBottomSheetComponent,
+    TaskUpdateBottomSheetComponent
   ],
   imports: [
     SharedModule,
